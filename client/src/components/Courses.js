@@ -1,8 +1,9 @@
-import React from ('react')
-import Context from('../Context')
+import React from 'react'
+import Context from '../Context'
 
 const Courses = () =>{
-        <div class="wrap main--grid">
+    return(
+<div class="wrap main--grid">
         <a class="course--module course--link" href="course-detail.html">
             <h2 class="course--label">Course</h2>
             <h3 class="course--title">Build a Basic Bookcase</h3>
@@ -23,4 +24,7 @@ const Courses = () =>{
             </span>
         </a>
         </div>    
-}
+
+    )
+        }
+export default Courses

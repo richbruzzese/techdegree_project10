@@ -1,26 +1,25 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
-import { BrowserRouter as Router,
+import { BrowserRouter, BrowserRouter as Router,
   Route,
   Switch } from 'react-router-dom';
 import axios from 'axios';
 
+
+
+import Header from './components/Header'
+import Courses from './components/Courses'
+
 function App() {
-  
-  useEffect( () =>{
-    axios.get(`http://localhost:5000/api/courses`)
-    .then(res => console.log(res))
-  })
 
   return (
-    
-    <div className="App">
-      <header className="App-header">
-        Test
-        
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Courses} />
+      </Switch>
+    </BrowserRouter>
+    )
 }
 
 export default App;
