@@ -16,9 +16,9 @@ const userSignup = () => {
                 <label for="password">Password</label>
                 <input id="password" name="password" type="password" value="" />
                 <button class="button" type="submit">Sign Up</button>
-                <button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+                <button class="button button-secondary" onclick="event.preventDefault(); location.href='/';">Cancel</button>
             </form>
-        <p>Already have a user account? Click here to <a href="sign-in.html">sign in</a>!</p>
+        <p>Already have a user account? Click here to <a href="signin">sign in</a>!</p>
         </div>
     )
 
