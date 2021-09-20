@@ -1,8 +1,9 @@
-import React from ('react')
-import Content from ('../Context')
+import React from 'react'
+import Content from '../Context'
 
 const CreateCourse = () => {
-    <div class='wrap'>
+    return(
+        <div class='wrap'>
         <h2> Create Course </h2>
             <div class="validation--errors">
                 <h3>Validation Errors</h3>
@@ -34,4 +35,7 @@ const CreateCourse = () => {
                 <button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';" />Cancel
             </form>
     </div>
+    )
+
 }
+export default CreateCourse
