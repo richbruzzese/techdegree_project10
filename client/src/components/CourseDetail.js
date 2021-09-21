@@ -8,10 +8,10 @@ const CourseDetail = () => {
     const { data, authenticatedUser } = useContext(Context)
     const  [course, setCourse]  = useState({})
 
-    useEffect( () => {
+    useEffect(()=>{
         data.getCourse(id)
         .then(course => setCourse(course))
-    }, [data, id])
+    },[data,id])
 
     if(course === null){
         return <Redirect to="/" />
@@ -49,7 +49,7 @@ const CourseDetail = () => {
                                     <h3 className='course--detail--title'> Course</h3>
                                     <h4 className='course--name'>{course.title}</h4>
 
-                                    <p>By {authenticatedUser.firstName} {authenticatedUser.firstName}</p>
+                                    <p>By </p>
                                 </div>
                                 <div> 
                                     <h3 className='course--detail--title'> Estimate Time</h3>
