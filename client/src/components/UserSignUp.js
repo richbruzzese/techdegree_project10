@@ -1,27 +1,96 @@
-import React from 'react'
-import Context from '../Context'
+import {useContext, useState} from 'react'
+import {Context} from '../Context'
+import { Link, useHistory, Redirect } from 'react-router-dom'
+import Form from './Form'
 
-const userSignup = () => {
+const UserSignup = () => {
+    let history = useHistory()
+    const { actions, data } = useContext(Context)
+    const [userCreds, setUserCreds] = useState({
+        firstName: '',
+        lastName: '',
+        emailAddress: '',
+        password: '',
+        errors: []
+    })
+
+    const {errors} = userCreds
+
+    const change = (e) => {
+        setUserCreds(prevValues => ({
+            ...prevValues,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    const handleSubmit = () =>{
+        const {firstName, lastName, emailAddress, password} = userCreds
+        const user = {firstName, lastName, emailAddress, password}
+        data.createUser(user)
+        .then(errors =>{
+            if(errors.length){
+                setUserCreds({errors:errors})
+            }else{
+                actions.signIn(emailAddress,password)
+                .then(() => history.goBack())
+            }
+        })
+        .catch(err =>{
+            console.log(err)
+            return <Redirect to='/error' />
+        })
+    }
+
+    const handleCancel = () =>{
+        history.push('/')
+    }
+
     return(
-        <div class="form--centered">
-            <h2>Sign Up</h2>
-            
-            <form>
-                <label for="firstName">First Name</label>
-                <input id="firstName" name="firstName" type="text" value="" />
-                <label for="lastName">Last Name</label>
-                <input id="lastName" name="lastName" type="text" value="" />
-                <label for="emailAddress">Email Address</label>
-                <input id="emailAddress" name="emailAddress" type="email" value="" />
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password" value="" />
-                <button class="button" type="submit">Sign Up</button>
-                <button class="button button-secondary" onclick="event.preventDefault(); location.href='/';">Cancel</button>
-            </form>
-        <p>Already have a user account? Click here to <a href="signin">sign in</a>!</p>
-        </div>
+        <main>
+            <div className='form--centered'>
+                <h2>Signup</h2>
+                <Form 
+                    submit={handleSubmit}
+                    cancel={handleCancel}
+                    errors={errors}
+                    submitButtonText='Sign Up'
+                    elements={() =>(
+                    <>
+                        <label htmlFor='firstName'> First Name</label>
+                        <input 
+                            id="firstName"
+                            name="firstName"
+                            type="text"
+                            onChange={change}
+                        />
+                        <label htmlFor='lastName'> Last Name</label>
+                        <input 
+                            id="lastName"
+                            name="lastName"
+                            type="text"
+                            onChange={change}
+                        />
+                        <label htmlFor='emailAddress'> Email Address</label>
+                        <input 
+                            id="emailAddress"
+                            name="emailAddress"
+                            type="email"
+                            onChange={change}
+                        />
+                        <label htmlFor='password'>Password</label>
+                        <input 
+                            id='password'
+                            name='password'
+                            type='password'
+                            onChange={change}
+                        />
+                    </>
+                )}
+                />
+                <p>Already have an account? Click here to <Link to='/signin'>Sign Up</Link></p>
+            </div>
+        </main>
     )
-
-
+    
 }
-export default userSignup
+export default UserSignup
