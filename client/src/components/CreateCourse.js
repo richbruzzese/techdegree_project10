@@ -3,6 +3,13 @@ import { useHistory, Redirect } from 'react-router-dom'
 import Form from './Form'
 import { Context } from '../Context'
 
+/**
+ * If user is authenticated, will render form to allow course creation
+ * Submitting the form will call the createCourse method from Data.js
+ * and route users back to main courses page
+ * If creation is cancelled users are directed back to main page
+ * @returns redirect to '/'
+ */
 const CreateCourse = () => {
    let history = useHistory()
    let { data, authenticatedUser } = useContext(Context)
@@ -20,7 +27,6 @@ const CreateCourse = () => {
 
     const handleSubmit = () => {
      course.userId = authenticatedUser.id
-     console.log(course)
      data.createCourse(course, emailAddress, password)
      .then(errors => {
          if(errors.length){

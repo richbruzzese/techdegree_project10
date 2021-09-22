@@ -30,7 +30,7 @@ const UpdateCourse = () => {
         .then(errors => {
             if(errors.length){
                 console.log((errors))
-                setCourse({errors})
+                setCourse({errors: errors})
             } else {
                 history.push(`/courses/${id}`)
             }

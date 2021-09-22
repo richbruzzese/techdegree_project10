@@ -2,6 +2,10 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from "../Context";
 import { useParams, Redirect, useLocation } from "react-router-dom";
 
+/**
+ * If user is authenticated will remove course from db.
+ * @returns a redirect to main page
+ */
 const DeleteCourse = () =>{
     const {id} =useParams()
     const {data , authenticatedUser} = useContext(Context)

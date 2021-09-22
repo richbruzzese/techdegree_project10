@@ -1,5 +1,7 @@
 import config from './config';
 
+
+//methods to call to the API and GET,POST,PUT, or DELETE
 export default class Data {
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
     const url = config.apiBaseUrl + path;

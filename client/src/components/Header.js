@@ -14,6 +14,9 @@ const Header = () => {
             <div className='wrap header--flex'>
             <h1 className='header--logo'><Link to='/'> Courses </Link></h1>
                 <nav>
+                {/* If user is an Authenticated user, displays their username
+                and the signout link in the header, otherwise - 
+                displays a Signup / Signin */}
                     {
                         authenticatedUser
                         ? <ul className='header--signedin'>

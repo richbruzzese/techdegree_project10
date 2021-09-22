@@ -16,6 +16,7 @@ const UserSignIn = () => {
         errors: []
     })
 
+    //Destctured these for easier reading
     const { emailAddress, password, errors } = userCreds
 
     const change = (e) => {
@@ -25,6 +26,11 @@ const UserSignIn = () => {
         }))
     }
 
+    /**
+     * On submit, signIn method from Context is handled,
+     * If user does not exist in the database, error is returned.
+     * Otherwise, user is brought back to the previous page
+     */
     const handleSubmit = () => {
         actions.signIn(emailAddress, password)
         .then(user =>{

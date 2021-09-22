@@ -5,7 +5,7 @@ import { BrowserRouter,
   Switch } from 'react-router-dom';
   import PrivateRoute from './PrivateRoute'
 
-
+// All Components for various app routes
 import Header from './components/Header'
 import Courses from './components/Courses'
 import UserSignIn from './components/UserSignIn';
@@ -16,7 +16,7 @@ import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 import DeleteCourse from './components/DeleteCourse';
 import Forbidden from './components/Forbidden';
-import Error from './components/Error';
+import UnhandledError from './components/UnhandledError';
 import NotFound from './components/NotFound'
 
 
@@ -36,7 +36,7 @@ function App() {
           <Route path="/signout" component={UserSignOut} />
           <Route path="/signup" component={UserSignUp} />
           <Route path='/forbidden' component={Forbidden} />
-          <Route path='/error' component={Error} />
+          <Route path='/error' component={UnhandledError} />
           <Route component={NotFound} />
         </Switch>
     </BrowserRouter>

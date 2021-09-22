@@ -3,6 +3,17 @@ import { Link, useParams, Redirect } from 'react-router-dom'
 import {Context} from '../Context'
 import ReactMarkdown from 'react-markdown'
 
+
+/**
+ * Gets the details for an individual course ID
+ * course description, materials, and estimated time are rendered
+ * with ReactMarkdown
+ * 
+ * If no course, renders '/notfound'
+ * 
+ * If user authenticated, and the owner of the Course:
+ * Update and Delete buttons rendered
+ */
 const CourseDetail = () => {
     const { id } = useParams()
     const { data, authenticatedUser } = useContext(Context)
@@ -14,7 +25,7 @@ const CourseDetail = () => {
     },[data,id])
 
     if(course === null){
-        return <Redirect to="/" />
+        return <Redirect to="/notfound" />
     } else {
         return(
             <main>
@@ -49,10 +60,17 @@ const CourseDetail = () => {
                                     <h3 className='course--detail--title'> Course</h3>
                                     <h4 className='course--name'>{course.title}</h4>
 
+                                    <ReactMarkdown>
+                                        {course.description}
+                                    </ReactMarkdown>
+
                                 </div>
                                 <div> 
                                     <h3 className='course--detail--title'> Estimate Time</h3>
-                                    <p>{course.estimatedTime}</p>
+
+                                    <ReactMarkdown>
+                                        {course.estimatedTime}
+                                    </ReactMarkdown>
 
                                     <h3 className='course--detail--title'> Materials Needed</h3>
                                     <ul className='course--detail--list'>

@@ -3,6 +3,7 @@ import {Context} from '../Context'
 import { Link, useHistory, Redirect } from 'react-router-dom'
 import Form from './Form'
 
+
 const UserSignup = () => {
     let history = useHistory()
     const { actions, data } = useContext(Context)
@@ -23,9 +24,16 @@ const UserSignup = () => {
         }))
     }
 
+     /*
+     When the submit button is hit - calls the createUser function from
+    Data and applies the provided variables to the db
+     */
     const handleSubmit = () =>{
+        // destructured the user credentials for fluidity
         const {firstName, lastName, emailAddress, password} = userCreds
+
         const user = {firstName, lastName, emailAddress, password}
+
         data.createUser(user)
         .then(errors =>{
             if(errors.length){
@@ -41,6 +49,7 @@ const UserSignup = () => {
         })
     }
 
+    //When cancel is hit, redirects to the main route
     const handleCancel = () =>{
         history.push('/')
     }

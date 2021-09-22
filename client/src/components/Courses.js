@@ -2,6 +2,10 @@ import { useState, useEffect, useContext} from 'react'
 import {Context} from '../Context'
 import { Link } from 'react-router-dom'
 
+/**
+ * Calls the list of all courses from the data base, maps them and 
+ * renders them to the main page.
+ */
 const Courses = () =>{
     const {data} = useContext(Context)
     const [courses, setCourses] = useState([])
