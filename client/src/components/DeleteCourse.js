@@ -8,7 +8,6 @@ const DeleteCourse = () =>{
     const [course, setCourse] = useState()
     const location = useLocation()
     const {courseUserId} = location.state || 0
-
     
     useEffect(() =>{
         data.getCourse(id)
@@ -17,7 +16,7 @@ const DeleteCourse = () =>{
 
     if(course === null){
         return <Redirect to='/notfound' />
-    }else if(authenticatedUser !== courseUserId){
+    }else if(authenticatedUser.id !== courseUserId){
         return <Redirect to='/forbidden' />
     }else {
         data.deleteCourse(id, authenticatedUser.emailAddress, authenticatedUser.password)

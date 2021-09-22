@@ -11,12 +11,12 @@ export default (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    submit();
+    submit(event);
   }
 
   function handleCancel(event) {
     event.preventDefault();
-    cancel();
+    cancel(event);
   }
 
   return (
@@ -36,18 +36,20 @@ export default (props) => {
 function ErrorsDisplay({ errors }) {
   let errorsDisplay = null;
 
-  if (errors.length) {
-    errorsDisplay = (
-      <div>
-        <h2 className="validation--errors">Validation errors</h2>
-        <div className="validation--errors">
-          <ul>
-            {errors.map((error, i) => <li key={i}>{error}</li>)}
-          </ul>
+  if (errors) {
+    if(errors.length){
+      errorsDisplay = (
+        <div>
+          <h2 className="validation--errors">Validation errors</h2>
+          <div className="validation--errors">
+            <ul>
+              {errors.map((error, i) => <li key={i}>{error}</li>)}
+            </ul>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }    
   }
-
+    
   return errorsDisplay;
 }

@@ -1,14 +1,14 @@
 import { useState , useContext } from 'react'
 import { useHistory, Redirect } from 'react-router-dom'
 import Form from './Form'
-import Content, { Context } from '../Context'
+import { Context } from '../Context'
 
 const CreateCourse = () => {
    let history = useHistory()
    let { data, authenticatedUser } = useContext(Context)
    const [ course, setCourse ] = useState({})
 
-   const { firstName, lastName } = authenticatedUser
+   const { firstName, lastName, emailAddress, password } = authenticatedUser
 
    
    const change = (e) => {
@@ -19,9 +19,10 @@ const CreateCourse = () => {
     }
 
     const handleSubmit = () => {
-     course.userId =authenticatedUser.userId
-     data.createCourse(course, authenticatedUser.emailaddress, authenticatedUser.password)
-     .then(errors =>{
+     course.userId = authenticatedUser.id
+     console.log(course)
+     data.createCourse(course, emailAddress, password)
+     .then(errors => {
          if(errors.length){
              console.log(errors)
              setCourse({errors:errors})
@@ -44,11 +45,11 @@ const CreateCourse = () => {
             <div className='wrap'>
                 <h2> Create Course </h2>
                 <Form 
-                    submit={handleSubmit}
                     cancel={handleCancel}
                     errors={course.errors}
+                    submit={handleSubmit}
                     submitButtonText='Create Course'
-                    elements={ () =>{
+                    elements={ () =>(
                         <div className='main--flex'>
                             <div>
                                 <label htmlFor='title'> Course Title </label>
@@ -59,8 +60,7 @@ const CreateCourse = () => {
                                     onChange={change}
                                 />
                                 <p>By {firstName} {lastName}</p>
-                            </div>
-                            <div>
+
                                 <label htmlFor='descirption'> Course Description </label>
                                 <textarea
                                     id='description'
@@ -76,8 +76,7 @@ const CreateCourse = () => {
                                     type='text'
                                     onChange={change}
                                 />
-                            </div>
-                            <div>
+
                                 <label htmlFor='materialsNeeded'> Materials Needed </label>
                                 <textarea
                                     id='materialsNeeded'
@@ -86,7 +85,7 @@ const CreateCourse = () => {
                                 />
                             </div>
                         </div>                        
-                    }}
+                    )}
                 />
             </div>
         </main>
