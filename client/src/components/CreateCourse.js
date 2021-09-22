@@ -8,7 +8,7 @@ const CreateCourse = () => {
    let { data, authenticatedUser } = useContext(Context)
    const [ course, setCourse ] = useState({})
 
-   const { firstName, lastName, emailAddress, password } = authenticatedUser
+   const { emailAddress, password } = authenticatedUser
 
    
    const change = (e) => {
@@ -59,7 +59,6 @@ const CreateCourse = () => {
                                     type='text'
                                     onChange={change}
                                 />
-                                <p>By {firstName} {lastName}</p>
 
                                 <label htmlFor='descirption'> Course Description </label>
                                 <textarea

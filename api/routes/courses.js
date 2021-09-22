@@ -12,7 +12,7 @@ router.get('/courses', asyncHandler(async ( req, res ) =>{
         include: [
             {
                 model: User,
-                as: 'Owner',
+                as: 'owner',
                 attributes:{
                     exclude:[
                         'password',
@@ -39,7 +39,7 @@ router.get('/courses/:id', asyncHandler(async( req, res ) => {
         include: [
             {
                 model: User,
-                as: 'Owner',
+                as: 'owner',
                 attributes:{
                     exclude:[
                         'password',

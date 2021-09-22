@@ -10,6 +10,7 @@ const UpdateCourse = () => {
     const [course, setCourse] = useState({})
     const location = useLocation()
     const {courseUserId} = location.state || 0
+    const { firstName, lastName, emailAddress, password } = authenticatedUser
 
 
     useEffect(() =>{
@@ -25,13 +26,13 @@ const UpdateCourse = () => {
         }
     
     const handleSubmit = () => {
-        data.updateCourse(id, course, authenticatedUser.emailAddress, authenticatedUser.password)
+        data.updateCourse(id, course, emailAddress, password)
         .then(errors => {
             if(errors.length){
                 console.log((errors))
                 setCourse({errors})
             } else {
-                history.push(`courses/${id}`)
+                history.push(`/courses/${id}`)
             }
         })
         .catch(err =>{
@@ -68,6 +69,7 @@ const UpdateCourse = () => {
                                     defaultValue={course.title}
                                     onChange={change}
                                 />
+                                <p>By {firstName} {lastName}</p>
 
                                 <label htmlFor='description'> Course Description </label>
                                 <textarea

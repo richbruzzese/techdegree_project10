@@ -6,8 +6,6 @@ import { BrowserRouter,
   import PrivateRoute from './PrivateRoute'
 
 
-
-
 import Header from './components/Header'
 import Courses from './components/Courses'
 import UserSignIn from './components/UserSignIn';
@@ -27,20 +25,20 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Switch>
-        <Route exact path="/" component={Courses} />
-        {/* private routes */}
-        <PrivateRoute path='/courses/:id/update' component={UpdateCourse} />
-        <PrivateRoute path='/courses/create' component={CreateCourse} />
-        <PrivateRoute path='/courses/:id/delete' component={DeleteCourse} />
-        <Route path="/courses/:id" component={CourseDetail} />
-        <Route path="/signin" component={UserSignIn} />
-        <Route path="/signout" component={UserSignOut} />
-        <Route path="/signup" component={UserSignUp} />
-        <Route path='/forbidden' component={Forbidden} />
-        <Route path='/error' component={Error} />
-        <Route component={NotFound} />
-      </Switch>
+        <Switch>
+          <Route exact path="/" component={Courses} />
+          {/* private routes */}
+          <PrivateRoute path='/courses/:id/update' component={UpdateCourse} />
+          <PrivateRoute path='/courses/create' component={CreateCourse} />
+          <PrivateRoute path='/courses/:id/delete' component={DeleteCourse} />
+          <Route path="/courses/:id" component={CourseDetail} />
+          <Route path="/signin" component={UserSignIn} />
+          <Route path="/signout" component={UserSignOut} />
+          <Route path="/signup" component={UserSignUp} />
+          <Route path='/forbidden' component={Forbidden} />
+          <Route path='/error' component={Error} />
+          <Route component={NotFound} />
+        </Switch>
     </BrowserRouter>
     )
 }
