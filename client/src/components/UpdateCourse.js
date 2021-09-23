@@ -19,8 +19,6 @@ const UpdateCourse = () => {
     }, [data, id])
 
     const change = (e) => {
-        console.log('event name', e.target.name)
-        console.log('event value', e.target.value)
         setCourse(prevValues => ({
             ...prevValues,
             [e.target.name]: e.target.value
@@ -28,15 +26,12 @@ const UpdateCourse = () => {
         }
     
     const handleSubmit = (e) => {
-        console.log("EEEEEEEEEEEEEEE", e.target)
         setCourse(prevValues => ({
             ...prevValues,
             [e.target.name]: e.target.value
             }))
         data.updateCourse(id, course, emailAddress, password)
-        .then(console.log('title', course.title))
-        .then(console.log('desc', course.description))
-        .then(errors => {
+         .then(errors => {
             if(errors.length){
                 console.log((errors))
                 setCourse({errors: errors})
