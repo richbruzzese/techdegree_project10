@@ -26,7 +26,7 @@ a {
 .wrap {
     max-width: 1250px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 10px;
 }
 header {
     background: #57496e;
@@ -114,7 +114,7 @@ header nav a:hover {
 .actions--bar {
     background: #e9e5f0;
     padding: 1rem 0;
-    margin: -2rem 0 2rem;
+    position: relative;
 }
 .validation--errors {
     background: #e9e5f0;

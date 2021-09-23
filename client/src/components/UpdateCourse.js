@@ -61,7 +61,7 @@ const UpdateCourse = () => {
                     <Form 
                         cancel={handleCancel}
                         errors={course.errors}
-                        submit={change,handleSubmit}
+                        submit={handleSubmit}
                         submitButtonText='Update Course'
                         elements={() =>(
                             <div className='main--flex'>
