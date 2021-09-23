@@ -52,36 +52,36 @@ const UserSignIn = () => {
     }
 
     return(
-    <div class="form--centered">
-        <h2>Sign In</h2>
-            <Form 
-                cancel={handleCancel}
-                submit={handleSubmit}
-                errors={errors}
-                submitButtonText="Sign In"
-                elements={() =>(
-                    <>
-                        <label htmlFor='emailAddress'> Email Address</label>
-                        <input 
-                            id="emailAddress"
-                            name="emailAddress"
-                            type="email"
-                            onChange={change}
-                        />
-                        <label htmlFor='password'>Password</label>
-                        <input 
-                            id='password'
-                            name='password'
-                            type='password'
-                            onChange={change}
-                        />
-                    </>
-                )}
-            />
-                
-        <p>Don't have a user account? Click here to <a href="signup">sign up</a>!</p>
+        <div className="form--centered">
+            <h2>Sign In</h2>
+                <Form 
+                    cancel={handleCancel}
+                    submit={handleSubmit}
+                    errors={errors}
+                    submitButtonText="Sign In"
+                    elements={() =>(
+                        <>
+                            <label htmlFor='emailAddress'> Email Address</label>
+                            <input 
+                                id="emailAddress"
+                                name="emailAddress"
+                                type="email"
+                                onChange={change}
+                            />
+                            <label htmlFor='password'>Password</label>
+                            <input 
+                                id='password'
+                                name='password'
+                                type='password'
+                                onChange={change}
+                            />
+                        </>
+                    )}
+                />
+                    
+            <p>Don't have a user account? Click here to <a href="signup">sign up</a>!</p>
 
-    </div>
+      </div>
     )
 
 }

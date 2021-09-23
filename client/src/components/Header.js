@@ -12,22 +12,22 @@ const Header = () => {
     return (
         <header>
             <div className='wrap header--flex'>
-            <h1 className='header--logo'><Link to='/'> Courses </Link></h1>
+                <h1 className='header--logo'><Link to='/'> Courses </Link></h1>
                 <nav>
-                {/* If user is an Authenticated user, displays their username
-                and the signout link in the header, otherwise - 
-                displays a Signup / Signin */}
-                    {
-                        authenticatedUser
-                        ? <ul className='header--signedin'>
-                            <li> Hi, {authUser}</li>
-                            <li><Link to='/signout'>Sign Out</Link></li>
-                        </ul>
-                        :<ul className='header--signedout'>
-                            <li><Link to='/signup'> Sign Up </Link></li>
-                            <li><Link to='/signin'> Sign In </Link></li>
-                        </ul>
-                    }
+                    {/* If user is an Authenticated user, displays their username
+                    and the signout link in the header, otherwise - 
+                    displays a Signup / Signin */}
+                        {
+                            authenticatedUser
+                            ? <ul className='header--signedin'>
+                                <li> Hi, {authUser}</li>
+                                <li><Link to='/signout'>Sign Out</Link></li>
+                            </ul>
+                            :<ul className='header--signedout'>
+                                <li><Link to='/signup'> Sign Up </Link></li>
+                                <li><Link to='/signin'> Sign In </Link></li>
+                            </ul>
+                        }
                 </nav>
             </div>
         </header>

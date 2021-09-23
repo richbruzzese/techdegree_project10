@@ -63,6 +63,7 @@ router.get('/courses/:id', asyncHandler(async( req, res ) => {
 router.post('/courses', authenticateUser, asyncHandler(async ( req, res ) => {
     try{
         let newCourse = req.body 
+        console.log("req",req.body)
         const createCourse = await Course.create(newCourse)
         const { id } = createCourse
          res.status(201)
@@ -84,6 +85,7 @@ router.put('/courses/:id', authenticateUser, asyncHandler(async ( req, res ) =>{
     try{
         const course = await Course.findByPk(req.params.id)
             if( req.currentUser.id === course.userId ){
+                console.log("req",req.body)
                 if(course){
                     console.log('UPDATING COURSE')
                     await course.update(req.body)

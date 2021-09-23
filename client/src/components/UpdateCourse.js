@@ -19,19 +19,29 @@ const UpdateCourse = () => {
     }, [data, id])
 
     const change = (e) => {
+        console.log('event name', e.target.name)
+        console.log('event value', e.target.value)
         setCourse(prevValues => ({
             ...prevValues,
             [e.target.name]: e.target.value
             }))
         }
     
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        console.log("EEEEEEEEEEEEEEE", e.target)
+        setCourse(prevValues => ({
+            ...prevValues,
+            [e.target.name]: e.target.value
+            }))
         data.updateCourse(id, course, emailAddress, password)
+        .then(console.log('title', course.title))
+        .then(console.log('desc', course.description))
         .then(errors => {
             if(errors.length){
                 console.log((errors))
                 setCourse({errors: errors})
             } else {
+                console.log(course)
                 history.push(`/courses/${id}`)
             }
         })
@@ -56,7 +66,7 @@ const UpdateCourse = () => {
                     <Form 
                         cancel={handleCancel}
                         errors={course.errors}
-                        submit={handleSubmit}
+                        submit={change,handleSubmit}
                         submitButtonText='Update Course'
                         elements={() =>(
                             <div className='main--flex'>
@@ -68,6 +78,7 @@ const UpdateCourse = () => {
                                     type='text'
                                     defaultValue={course.title}
                                     onChange={change}
+                                    onKeyUp={change}   
                                 />
                                 <p>By {firstName} {lastName}</p>
 
@@ -77,6 +88,7 @@ const UpdateCourse = () => {
                                     name='description'
                                     defaultValue={course.description}
                                     onChange={change}
+                                    onKeyUp={change}                                    
                                 />
                             </div>
                             <div>
