@@ -35,7 +35,8 @@ const UserSignIn = () => {
         actions.signIn(emailAddress, password)
         .then(user =>{
             if (user === null){
-                setUserCreds({errors: ['Sign-in Unsuccessful']})
+                setUserCreds({errors: ['Sign-in Unsuccessful. Email or password invalid']})
+                document.querySelector('FORM').reset()
             }else {
                 history.goBack()
             }

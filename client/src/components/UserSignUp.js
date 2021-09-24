@@ -38,6 +38,7 @@ const UserSignup = () => {
         .then(errors =>{
             if(errors.length){
                 setUserCreds({errors:errors})
+                document.querySelector('FORM').reset()
             }else{
                 actions.signIn(emailAddress,password)
                 .then(() => history.goBack())

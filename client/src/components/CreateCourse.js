@@ -14,7 +14,7 @@ const CreateCourse = () => {
    let history = useHistory()
    let { data, authenticatedUser } = useContext(Context)
    const [ course, setCourse ] = useState({})
-
+   const [errors, setErrors] = useState({})
    const { emailAddress, password } = authenticatedUser
 
    
@@ -28,10 +28,10 @@ const CreateCourse = () => {
     const handleSubmit = () => {
      course.userId = authenticatedUser.id
      data.createCourse(course, emailAddress, password)
-     .then(errors => {
-         if(errors.length){
-             console.log(errors)
-             setCourse({errors:errors})
+     .then(errs => {
+         if(errs.length){
+             console.log(errs)
+             setErrors({errs})
          } else {
              history.push('/')
          }
@@ -52,7 +52,7 @@ const CreateCourse = () => {
                 <h2> Create Course </h2>
                 <Form 
                     cancel={handleCancel}
-                    errors={course.errors}
+                    errors={errors.errs}
                     submit={handleSubmit}
                     submitButtonText='Create Course'
                     elements={ () =>(

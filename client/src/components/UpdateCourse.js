@@ -8,10 +8,11 @@ const UpdateCourse = () => {
     const {id} = useParams()
     let {data, authenticatedUser} = useContext(Context)
     const [course, setCourse] = useState({})
+    const [errors, setErrors] = useState({})
     const location = useLocation()
     const {courseUserId} = location.state || 0
     const { firstName, lastName, emailAddress, password } = authenticatedUser
-
+    
 
     useEffect(() =>{
         data.getCourse(id)
@@ -21,20 +22,17 @@ const UpdateCourse = () => {
     const change = (e) => {
         setCourse(prevValues => ({
             ...prevValues,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
             }))
         }
-    
-    const handleSubmit = (e) => {
-        setCourse(prevValues => ({
-            ...prevValues,
-            [e.target.name]: e.target.value
-            }))
+
+    const handleSubmit = () => {
         data.updateCourse(id, course, emailAddress, password)
-         .then(errors => {
-            if(errors.length){
-                console.log((errors))
-                setCourse({errors: errors})
+        .then( errs => {
+            if (errs.length) {
+                console.log(errors)
+                setErrors({errs})
+                console.log(course)
             } else {
                 console.log(course)
                 history.push(`/courses/${id}`)
@@ -45,6 +43,7 @@ const UpdateCourse = () => {
             return <Redirect to='/error' />
         })
     }
+
     const handleCancel = () =>{
         history.push(`/courses/${id}`)
     }
@@ -60,7 +59,7 @@ const UpdateCourse = () => {
                     <h2>Update Course</h2>
                     <Form 
                         cancel={handleCancel}
-                        errors={course.errors}
+                        errors={errors.errs}
                         submit={handleSubmit}
                         submitButtonText='Update Course'
                         elements={() =>(
